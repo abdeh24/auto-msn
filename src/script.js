@@ -28,7 +28,7 @@ async function loadAndShuffle() {
     const text = await response.text();
 
     let links = text.split('\n')
-    .map(link => link.trim())
+    .map(link => link.replace(/[^\x20-\x7E]/g, '').trim())
     .filter(link => link.length > 0);
 
     if (links.length === 0) throw new Error('src/links.txt empty');
