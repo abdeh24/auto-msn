@@ -22,23 +22,25 @@ function shuffleArray(array) {
 }
 
 async function loadAndShuffle() {
-  try {
-    const response = await fetch('src/links.txt');
-    if (!response.ok) throw new Error('src/links.txt not exist');
-    const text = await response.text();
-
-    let links = text.split('\n')
-    .map(link => link.replace(/[^\x20-\x7E]/g, '').trim())
-    .filter(link => link.length > 0);
-
-    if (links.length === 0) throw new Error('src/links.txt empty');
-
-    shuffledLinks = shuffleArray(links);
-    return true;
-  } catch (err) {
-    statusText.innerText = "Error: " + err.message;
-    return false;
-  }
+    try {
+        const response = await fetch('src/links.txt');
+        if (!response.ok) throw new Error('links.txt not found');
+        const text = await response.text();
+        
+        let links = text.split('\n')
+        .map(link => {
+            return link.replace(/[^\x20-\x7E]/g, '').trim();
+        })
+        .filter(link => link.startsWith('http'));
+        
+        if (links.length === 0) throw new Error('links.txt empty or invalid');
+        
+        shuffledLinks = shuffleArray(links);
+        return true;
+    } catch (err) {
+        statusText.innerText = "Error: " + err.message;
+        return false;
+    }
 }
 
 function runAutomation() {
