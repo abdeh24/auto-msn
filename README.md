@@ -16,7 +16,7 @@ Automatically open pre-saved MSN news links to earn Microsoft Rewards Points.
   <img src="https://api.pikwy.com/web/69f1f25a2e46e264cf36f874.jpg" style="width: 100%;height: 100%; border-radius: 10px;">
 </div>
 
-### Do it on your own
+### Do it on your own system locally
 1. Clone the repository:
    ```bash
    git clone https://github.com/abdeh24/auto-msn.git
